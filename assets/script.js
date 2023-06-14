@@ -1,28 +1,27 @@
 //get time at top of page
-var currentDate = dayjs().format("dddd, MMMM D");
+var currentDate = dayjs.unix(1686760696);
 $("#currentDay").text(currentDate);
 
 
 
 
+$(document).ready(function(){
 
-$(document).ready(function () {
   $(".saveBtn").on("click", function () {
       var text = $(this).siblings(".description").val();
       var time = $(this).parent().attr("id");
-ort
+
       localStorage.setItem(time, text);
   })
 
-//select all hour blocks with Jquery
-      var hourBlocks = $(".time-block");
-//go through hours with each function
-  hourBlocks.each(function(){
-    var timeBlock = $(this);
-    var currentTimeIs = new Date().getHours();
-//remove their classes to start fresh
-    timeBlock.removeClass("past present future");
 
+    var currentTimeIs = currentDate.hour();
+
+    // loop over time blocks
+    $(".time-block").each(function () {
+        var timeBlock = parseInt($(this).attr("id").split("hour")[1]);
+//hour9
+console.log(timeBlock, currentTimeIs);
 // class according to current time
 if (timeBlock < currentTimeIs) {
   $(this).removeClass("future");
@@ -54,8 +53,7 @@ $("#hour15 .description").val(localStorage.getItem("hour15"));
 $("#hour16 .description").val(localStorage.getItem("hour16"));
 $("#hour17 .description").val(localStorage.getItem("hour17"));
 
-timeTracker();
-});
+})
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
