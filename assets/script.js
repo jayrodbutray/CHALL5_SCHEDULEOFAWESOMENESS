@@ -1,8 +1,9 @@
 //get time at top of page
-var currentDate = dayjs();
+
+var currentDate = dayjs().format("dddd, MMMM DD HH:mm:ss");
 $("#currentDay").text(currentDate);
 
-
+var currentTimeIs = dayjs().hour();
 
 
 $(document).ready(function(){
@@ -15,14 +16,13 @@ $(document).ready(function(){
   })
 
 
-    var currentTimeIs = currentDate.hour();
-
-    // loop over time blocks to show 1 character to right of hour
-    $(".time-block").each(function () {
-        var timeBlock = parseInt($(this).attr("id").split("hour")[1]);
+// loop over time blocks to show 1 character to right of hour
+$(".time-block").each(function () {
+      var timeBlock = parseInt($(this).attr("id").split("hour")[1]);
 //hour9
 console.log(timeBlock, currentTimeIs);
 // add classes depending on time so that colors indicate past, present and future
+
 if (timeBlock < currentTimeIs) {
   $(this).removeClass("future");
   $(this).removeClass("present");
@@ -42,16 +42,15 @@ else {
 
 //local storage for anything saved at each hour
 
-$("#hour8 .description").val(localStorage.getItem("hour8"));
-$("#hour9 .description").val(localStorage.getItem("hour9"));
-$("#hour10 .description").val(localStorage.getItem("hour10"));
-$("#hour11 .description").val(localStorage.getItem("hour11"));
-$("#hour12 .description").val(localStorage.getItem("hour12"));
-$("#hour13 .description").val(localStorage.getItem("hour13"));
-$("#hour14 .description").val(localStorage.getItem("hour14"));
-$("#hour15 .description").val(localStorage.getItem("hour15"));
-$("#hour16 .description").val(localStorage.getItem("hour16"));
-$("#hour17 .description").val(localStorage.getItem("hour17"));
+$("#hour9am .description").val(localStorage.getItem("hour9am"));
+$("#hour10am .description").val(localStorage.getItem("hour10am"));
+$("#hour11am .description").val(localStorage.getItem("hour11am"));
+$("#hour12pm .description").val(localStorage.getItem("hour12pm"));
+$("#hour13pm .description").val(localStorage.getItem("hour13pm"));
+$("#hour14pm .description").val(localStorage.getItem("hour14pm"));
+$("#hour15pm .description").val(localStorage.getItem("hour15pm"));
+$("#hour16pm .description").val(localStorage.getItem("hour16pm"));
+$("#hour17pm .description").val(localStorage.getItem("hour17pm"));
 
 })
   
